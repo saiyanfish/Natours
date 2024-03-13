@@ -102,7 +102,6 @@ exports.protect = catchAsync(async (req, res, next) => {
     );
   }
 
-  console.log('a');
   // Grant access to protect route
   req.user = freshUser;
   res.locals.user = freshUser;
@@ -127,7 +126,7 @@ exports.isLoggedIn = async (req, res, next) => {
         req.cookies.jwt,
         process.env.JWT_SECRET,
       );
-      console.log(decoded);
+      // console.log(decoded);
       // 3) Check if user still exists
       const freshUser = await User.findById(decoded.id);
       if (!freshUser) {

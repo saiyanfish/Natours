@@ -8,6 +8,7 @@ const xss = require('xss-clean');
 const hpp = require('hpp');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
+const compression = require('compression');
 
 const AppError = require('./utils/appError');
 const globalErrorHandler = require('./controllers/errorController');
@@ -19,12 +20,12 @@ const viewRouter = require('./routes/viewRoutes');
 const bookingRouter = require('./routes/bookingRouter');
 
 const app = express();
-const corsOptions = {
-  origin: 'http://127.0.0.1:3000',
-  optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
-};
+// const corsOptions = {
+//   origin: 'http://127.0.0.1:3000',
+//   optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+// };
 
-app.use(cors(corsOptions));
+app.use(cors({}));
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
 
@@ -76,6 +77,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 //   console.log('hello from the middleWare');
 //   next();
 // });
+
+app.use(compression());
 
 app.use((req, res, next) => {
   req.requestTime = new Date().toISOString();
