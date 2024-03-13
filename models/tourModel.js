@@ -178,7 +178,7 @@ tourSchema.pre('aggregate', function (next) {
   // );
   const hasGeoNearStage = this.pipeline()[0].$geoNear !== undefined;
   if (!hasGeoNearStage) {
-    console.log('!geoNear');
+    // console.log('!geoNear');
     this.pipeline().unshift({ $match: { secretTour: { $ne: true } } });
   }
   next();

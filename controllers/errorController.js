@@ -6,7 +6,7 @@ const handleCastError = (err) => {
 };
 
 const handleDuplicatedFieldsError = (err) => {
-  console.log(err);
+  console.error(err);
   // const value = err.message.match(/(["'"])(\\?.)*?\1/);
   const value = JSON.stringify(err.keyValue).match(/"([^"]*)"\s*:\s*"([^"]*)"/);
 
