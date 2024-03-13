@@ -25,7 +25,7 @@ const app = express();
 //   optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
 // };
 
-app.use(cors());
+app.use(cors({}));
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
 
